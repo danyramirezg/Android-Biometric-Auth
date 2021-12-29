@@ -16,16 +16,11 @@ class MainActivity : AppCompatActivity() {
     lateinit var promptInfo: androidx.biometric.BiometricPrompt.PromptInfo
 
     lateinit var executor: Executor
-    lateinit var btnAut: Button
-    lateinit var tvAuthStatus: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        //btnAut = binding.button
-        //tvAuthStatus = binding.textViewAuthenticateStatus
 
         executor = ContextCompat.getMainExecutor(this)
 
@@ -35,11 +30,11 @@ class MainActivity : AppCompatActivity() {
             object : androidx.biometric.BiometricPrompt.AuthenticationCallback() {
                 override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
                     super.onAuthenticationError(errorCode, errString)
-                    binding.textViewAuthenticateStatus.text = "Error " + errString
+                    binding.textViewAuthenticateStatus.text = "Error: " + errString
                 }
                 override fun onAuthenticationSucceeded(result: androidx.biometric.BiometricPrompt.AuthenticationResult) {
                     super.onAuthenticationSucceeded(result)
-                    binding.textViewAuthenticateStatus.text = "Authentication is succesful"
+                    binding.textViewAuthenticateStatus.text = "Authentication is successful"
                 }
 
                 override fun onAuthenticationFailed() {
